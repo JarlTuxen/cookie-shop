@@ -18,42 +18,49 @@ public class CookieController {
 
     @GetMapping("/")
     public String index(HttpSession session){
+
         return "index";
     }
 
     @GetMapping("/basket")
-    public String showBasket(HttpSession session, Model basketModel){
-        basketModel.addAttribute(session.getAttribute("basket"));
+    public String basket(HttpSession session, Model basketModel){
+        Basket basket = (Basket) session.getAttribute("basket");
+        if (basket==null) basket = new Basket(new ArrayList<>());
+        session.setAttribute("basket", basket);
+
+        //price
+        int totalPrice = 0;
+        for (Cookie cookie:basket.getCookieList()) totalPrice += cookie.getPrice();
+        basketModel.addAttribute("totalPrice", totalPrice);
         return "basket";
     }
 
     @GetMapping("/shop")
-    public String showShop(HttpSession session, Model cookieModel){
+    public String shop(HttpSession session, Model cookieModel){
         cookieModel.addAttribute("cookies",repo.getAllCookies());
         return "shop";
     }
 
     @GetMapping("/addToBasket")
-    public String add(HttpSession session, @RequestParam int id, Model cookieModel){
+    public String add(HttpSession session, @RequestParam int id){
         //get cookie with id
-        Cookie cookie= repo.getCookieById(id);
-
+        Cookie cookie = repo.getCookieById(id);
 
         //get basket from session
         Basket basket = (Basket) session.getAttribute("basket");
 
         //get cookielist from basket
+        if (basket==null) basket = new Basket(new ArrayList<>());
         List<Cookie> cookies = basket.getCookieList();
+
         //add cookie to cookielist
         cookies.add(cookie);
+
         //set basket to cookielist
         basket.setCookieList(cookies);
 
-        //add basket to model for Thymeleaf
-        //cookieModel.addAttribute("basket", basket);
-
         //add basket to session
-        session.setAttribute("basket", cookies);
+        session.setAttribute("basket", basket);
         return "redirect:/";
     }
 }
