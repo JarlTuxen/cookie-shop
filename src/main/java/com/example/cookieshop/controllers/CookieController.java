@@ -61,7 +61,7 @@ public class CookieController {
 
         //add basket to session
         session.setAttribute("basket", basket);
-        return "redirect:/";
+        return "redirect:/basket";
     }
 
     //setAttribute
