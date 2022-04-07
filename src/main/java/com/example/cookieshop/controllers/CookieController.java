@@ -18,7 +18,7 @@ public class CookieController {
 
     @GetMapping("/")
     public String index(HttpSession session){
-
+        if (session.getAttribute("cookieref") == null) session.setAttribute("cookieref", new Cookie(1,"Ostekage", 5));
         return "index";
     }
 
@@ -62,5 +62,22 @@ public class CookieController {
         //add basket to session
         session.setAttribute("basket", basket);
         return "redirect:/";
+    }
+
+    //setAttribute
+    @GetMapping("/setcookie")
+    public String setCookie(HttpSession session){
+        Cookie myCookie = new Cookie(43, "Chokolademuffin", 16);
+        session.setAttribute("cookieref", myCookie);
+        return "index";
+    }
+
+    //getAttribute
+    @GetMapping("/getcookie")
+    public String getCookie(HttpSession session){
+        Cookie cookie = (Cookie) session.getAttribute("cookieref");
+        cookie.setName("Mighty Chokolate Donut");
+        session.setAttribute("cookieref", cookie);
+        return "index";
     }
 }
