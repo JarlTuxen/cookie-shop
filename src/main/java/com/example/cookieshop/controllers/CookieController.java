@@ -31,6 +31,8 @@ public class CookieController {
         //price
         int totalPrice = 0;
         for (Cookie cookie:basket.getCookieList()) totalPrice += cookie.getPrice();
+        //alternativ kode med brug af stream
+        //totalPrice = basket.getCookieList().stream().mapToInt(Cookie::getPrice).sum();
         basketModel.addAttribute("totalPrice", totalPrice);
         return "basket";
     }
