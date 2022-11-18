@@ -18,7 +18,7 @@ public class CookieController {
 
     @GetMapping("/")
     public String index(HttpSession session){
-        if (session.getAttribute("cookieref") == null) session.setAttribute("cookieref", new Cookie(1,"Ostekage", 5));
+        //if (session.getAttribute("cookieref") == null) session.setAttribute("cookieref", new Cookie(1,"Ostekage", 5));
         return "index";
     }
 
@@ -63,6 +63,9 @@ public class CookieController {
 
         //add basket to session
         session.setAttribute("basket", basket);
+
+        //redirects to basket
+        //could be shop instead to continue shopping - but would make it unclear if anything is added
         return "redirect:/basket";
     }
 
