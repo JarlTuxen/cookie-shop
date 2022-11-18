@@ -7,12 +7,12 @@
 </head>
 <body>
     <div class="container">
-        <nav class="navbar navbar-light bg-light">
+        <nav th:replace="fragments/navbar :: navbar-std">Navigationslinie</nav>
+        <!-- <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand" href="/">Home</a>
             <a class="navbar-brand" href="/shop">Shop</a>
             <a class="navbar-brand" href="/basket">Basket</a>
-        </nav>
-        <table class="table table-striped">
+        </nav>-->        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
