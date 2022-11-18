@@ -7,11 +7,12 @@
 </head>
 <body>
     <div class="container">
-        <nav class="navbar navbar-light bg-light">
+        <nav th:replace="fragments/navbar :: navbar-standard">Her kommer navigationslinien</nav>
+<!--        <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand" href="/">Home</a>
             <a class="navbar-brand" href="/shop">Shop</a>
             <a class="navbar-brand" href="/basket">Basket</a>
-        </nav>
+        </nav> -->
         <h1>Welcome To the Cookie shop</h1>
         <!--<div>
             Cookie-name: <span th:text="${session.cookieref.name}">42</span>
