@@ -25,12 +25,17 @@ public class CookieController {
     @GetMapping("/basket")
     public String basket(HttpSession session, Model basketModel){
         Basket basket = (Basket) session.getAttribute("basket");
-        if (basket==null) basket = new Basket(new ArrayList<>());
-        session.setAttribute("basket", basket);
+        if (basket==null) {
+            basket = new Basket(new ArrayList<>());
+            session.setAttribute("basket", basket);
+        }
 
         //price
         int totalPrice = 0;
-        for (Cookie cookie:basket.getCookieList()) totalPrice += cookie.getPrice();
+        for (Cookie cookie:basket.getCookieList())
+        {
+            totalPrice += cookie.getPrice();
+        }
         //alternativ kode med brug af stream
         //totalPrice = basket.getCookieList().stream().mapToInt(Cookie::getPrice).sum();
         basketModel.addAttribute("totalPrice", totalPrice);
@@ -52,7 +57,9 @@ public class CookieController {
         Basket basket = (Basket) session.getAttribute("basket");
 
         //get cookielist from basket
-        if (basket==null) basket = new Basket(new ArrayList<>());
+        if (basket==null) {
+            basket = new Basket(new ArrayList<>());
+        }
         List<Cookie> cookies = basket.getCookieList();
 
         //add cookie to cookielist

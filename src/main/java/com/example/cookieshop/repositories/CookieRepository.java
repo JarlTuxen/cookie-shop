@@ -11,12 +11,12 @@ public class CookieRepository {
     /*This is a test-repository*/
 
     public List<Cookie> getAllCookies(){
-        return new ArrayList<Cookie>(
+        return new ArrayList<>(
             Arrays.asList(
-                    new Cookie(1,"Chocolate", 30),
-                    new Cookie(2,"Oatmeal", 15),
-                    new Cookie(3,"Tofu", 20),
-                    new Cookie(4,"Macaroon", 50)
+                    new Cookie(1,"Chocolate Cookie", 30),
+                    new Cookie(2,"Oatmeal Cookie", 15),
+                    new Cookie(3,"Tofu Cookie", 20),
+                    new Cookie(4,"Macaroon Cookie", 50)
             )
         );
     }
@@ -25,16 +25,16 @@ public class CookieRepository {
         Cookie cookieToReturn = null;
         switch(id){
             case 1 :
-                cookieToReturn = new Cookie(1,"Chocolate", 30);
+                cookieToReturn = new Cookie(1,"Chocolate Cookie", 30);
                 break;
             case 2 :
-                cookieToReturn = new Cookie(2,"Oatmeal", 15);
+                cookieToReturn = new Cookie(2,"Oatmeal Cookie", 15);
                 break;
             case 3 :
-                cookieToReturn = new Cookie(3,"Tofu", 20);
+                cookieToReturn = new Cookie(3,"Tofu Cookie", 20);
                 break;
             case 4 :
-                cookieToReturn = new Cookie(4,"Macaroon", 50);
+                cookieToReturn = new Cookie(4,"Macaroon Cookie", 50);
                 break;
         }
         return cookieToReturn;
